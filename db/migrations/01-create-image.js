@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       file: {
-        type: Sequelize.BLOB
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
