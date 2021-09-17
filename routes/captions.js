@@ -15,7 +15,7 @@ router.post('/', authCheck, async (req, res) => {
     const img = req.body.image_id;
     const user = req.user.id;
     const newCaption = await db.addCaption(user, caption, img);
-    res.status(200).json(`User ${user} added new caption ${caption}.`);
+    res.status(201).json(`User ${user} added new caption ${caption}.`);
 });
 
 module.exports = router;

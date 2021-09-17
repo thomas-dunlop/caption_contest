@@ -1,0 +1,292 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Caption Contest API",
+    "description": "A simple API that allows users to view images and submit captions. Anyone can view images, but users must create an account and login to submit captions."
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "authentication",
+      "description": "Access to login, create account, and log out"
+    },
+    {
+      "name": "images",
+      "description": "Access to images"
+    },
+    {
+      "name": "captions",
+      "description": "Access to captions"
+    }
+  ],
+  "paths": {
+    "/images": {
+      "get": {
+        "tags": [
+          "images"
+        ],
+        "summary": "Gets all images",
+        "description": "Returns a list of all images",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "file": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images/{id}": {
+      "get": {
+        "tags": [
+          "images"
+        ],
+        "summary": "Gets a specific image by id",
+        "description": "Returns a JSON object containig the image and associated captions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true,
+            "description": "Numeric ID of the image to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "imageResult": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "file": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "captionResult": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "caption": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "updatedAt": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "integer"
+                      },
+                      "image_id": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Image with specific id could not be found"
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Gets instructions for login",
+        "description": "Returns a string with instructions for loggin in (a POST request with a specific format for the body)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Path for logging in",
+        "description": "Authenticates user is they have an account and include the correct username and password in the request body.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The users login info. Example {username: john.doe@gmail.com password: fluffy}",
+            "schema": {
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success, redirects to '/'"
+          },
+          "404": {
+            "description": "Failure, either the request body was not in the correct format, the username or password was not correct, or the user does not have an account. Redirects to \"/login\""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Path for logging out",
+        "description": "Logs the user out by destroying their session and cookie.",
+        "responses": {
+          "200": {
+            "description": "Success, redirects to '/login'"
+          }
+        }
+      }
+    },
+    "/create-account": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Path for creating an account",
+        "description": "Creates a new entry in the database for the user that contains the submitted username, a hash of the submitted password, and a generated user_id",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The users login info. Example {username: john.doe@gmail.com password: fluffy}",
+            "schema": {
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Failure",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/captions": {
+      "post": {
+        "tags": [
+          "captions"
+        ],
+        "summary": "Path for submitting a caption",
+        "description": "If authenticated, the user will be able to submit captions",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "caption",
+            "description": "Caption information. Note that user_Id will be automatically added if the user is authenticated.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "caption",
+                "image_id"
+              ],
+              "properties": {
+                "caption": {
+                  "type": "string"
+                },
+                "image_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

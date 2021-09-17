@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/queries.js');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../config/swagger.json');
 const passport = require('passport');
 
-router.get('/', (req, res) => {
+router.use('/', swaggerUi.serve);
+router.get('/', swaggerUi.setup(swaggerDocument));
+
+/*router.get('/', (req, res) => {
     res.status(200).send("You logged in! Go to /images to see images or POST to /captions to submit captions.");
-})
+})*/
 
 router.post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login'}));
 
