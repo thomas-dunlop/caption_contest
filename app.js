@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieSession({
     maxAge: 24*60*60*1000,
-    keys: ['WOOOOOOOOOOOOOOOOOO']
+    keys: ['WOOOOOOOOOOOOOOOOOO'] //Remember to move to env file
 }))
 app.use(passport.initialize());
 app.use(passport.session());

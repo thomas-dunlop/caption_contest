@@ -14,7 +14,9 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-
+    req.logout();
+    console.log(req.user);
+    res.redirect('/login');
 })
 
 router.post('/create-account', async (req, res) => {
