@@ -1,7 +1,7 @@
 const env = process.env.NODE_ENV || 'development';
 const Sequelize = require('sequelize');
 const { resourceLimits } = require('worker_threads');
-const config = require(__dirname + '/../config/database.js')[env];
+const config = require(__dirname + '/../config/database.json')[env];
 const bcrypt = require('bcrypt');
 
 let sequelize;

@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "me",
+    "password": "me2",
+    "database": "caption_contest",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "me",
+    "password": "me2",
+    "database": "caption_contest",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "me",
+    "password": "me2",
+    "database": "caption_contest",
+    "host": "localhost",
+    "dialect": "postgres",
+    "use_env_variable": "DATABASE_URL"
+  }
+}
