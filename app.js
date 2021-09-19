@@ -10,12 +10,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieSession({
     maxAge: 24*60*60*1000,
-    keys: ['WOOOOOOOOOOOOOOOOOO'] //Remember to move to env file
+    keys: ['kljfsdkljasdoij'] 
 }))
 app.use(passport.initialize());
 app.use(passport.session());
 
-const PORT = 3000;
+let PORT; 
+const isProduction = process.env.NODE_ENV === 'production';
+if(isProduction === true) {
+    PORT = process.env.PORT;
+} else {
+    PORT = 3000;
+};
 
 const imageRoute = require('./routes/images');
 app.use('/images', imageRoute);
