@@ -6,9 +6,9 @@
     "description": "A simple API that allows users to view images and submit captions. Anyone can view images, but users must create an account and login to submit captions."
   },
   "schemes": [
-    "http"
+    "https"
   ],
-  "host": "localhost:3000",
+  "host": "image-contest-api.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
