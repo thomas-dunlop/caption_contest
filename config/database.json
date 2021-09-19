@@ -4,14 +4,16 @@
     "password": "me2",
     "database": "caption_contest",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   },
   "test": {
     "username": "me",
     "password": "me2",
     "database": "caption_contest",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   },
   "production": {
     "username": "me",
@@ -19,6 +21,7 @@
     "database": "caption_contest",
     "host": "localhost",
     "dialect": "postgres",
+    "operatorsAliases": false,
     "use_env_variable": "DATABASE_URL"
   }
 }
