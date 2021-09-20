@@ -1,89 +1,59 @@
 # caption_contest
-> Outline a brief description of your project.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+> Basic API that allows authenticated users to submit captions for images in a photo contest. 
+> Live demo [_here_](image-contest-api.herokuapp.com).
 
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
-* [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
-* [Contact](#contact)
-<!-- * [License](#license) -->
 
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+This project was completed to satisfy a portfolio component of the Back-End Engineer career path on Code Academy. The goal of the project was to implement an API for a caption contest where users could create an account, login, and submit captions for various images. The project built on previous portfolio components, adding basic authentication using Passport.js and caching using node-cache.  
 
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- Express - version 4.17.1
+- PostgreSQL - version 13
+- Swagger - OpenAPI Specification 2.0
+- Passport.js - version 0.4.1
+- Sequelize - version 6.6.5
+- bcrypt - version 5.0.1
+- cookie-session - version 1.4.0
+- node-cache - version 5.1.2 
 
 
 ## Features
 List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
-
-
-## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+- Endpoints for authentication (logging in, logging out, creating an account), viewing images, and submitting captions. 
+- PostgreSQL database for storing images, captions, and user information. 
+- Basic authentication using Passport.js. Passwords are hashed using bcrypt before being stored in the database. 
+- Server cache using node-cache for frequently accessed images. 
 
 
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
+- In order to deploy to Heroku, edit the "host" field in the `swagger.json` file to update the swagger documentation. Otherwise, the program is ready for immediate deployment. 
+- In order to deploy locally, also edit the "development" object in the `database.json` file to match your local database. The basic structure of the database can be created by running the migrations in the migration folder using sequelize. Five default images can also be added by running the seeders. 
+- During deployment to Heroku, the "build" command in the `package.json` file is run. This command seeds the database, clears all data from the Images and Captions tables, and re-seeds the five default images. If you want to change this behavior, edit this command. 
 
 
 ## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
+The swagger documentation can be accessed through the root directory '/'. 
 
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Project is:  _complete_ 
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
+- Better error handling for endpoints. 
+- Ability to edit your own captions. 
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
-
-
-## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
-
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+Full credit to the Code Academy Back-End Engineering career pathway. 
