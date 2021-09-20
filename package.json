@@ -21,7 +21,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sequelize db:migrate --env production && sequelizedb:seed:undo:all && sequelize db:seed:all",
+    "build": "sequelize db:migrate --env production && sequelize db:seed:undo:all && sequelize db:seed:all",
     "start": "node app.js"
   },
   "repository": {
