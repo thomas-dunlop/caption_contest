@@ -1,6 +1,6 @@
 # caption_contest
 > Basic API that allows authenticated users to submit captions for images in a photo contest. 
-> Live demo [_here_](image-contest-api.herokuapp.com).
+> Live demo [_here_](https://image-contest-api.herokuapp.com).
 
 ## Table of Contents
 * [General Info](#general-information)
